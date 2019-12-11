@@ -3,6 +3,15 @@
 #defining global variables
 GLOBALSOURCE=0
 
+pycharm() {
+echo "Launching IDE Pycharm..."
+currentDate=$(date '+%Y-%m-%d_%H:%M:%S')
+CURRENTFILE=./Pycharm_logs/logging"$currentDate".log
+echo "Log file will be stored here : " "$CURRENTFILE"
+sh /snap/pycharm-community/169/bin/pycharm.sh > "$CURRENTFILE" 2>& 1 & 
+echo "Pycharm launching done..."
+}
+
 copysafe() {
 SOURCE=$GLOBALSOURCE
 echo "Starting copying file in argument"
