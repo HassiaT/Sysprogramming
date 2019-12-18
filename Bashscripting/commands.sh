@@ -4,12 +4,10 @@
 GLOBALSOURCE=0
 
 
-
-# defining commands/ functions
 pycharm() {
 echo "Launching IDE Pycharm..."
 currentDate=$(date '+%Y-%m-%d_%H:%M:%S')
-CURRENTFILE=/Pycharm_logs/logging"$currentDate".log
+CURRENTFILE=~/Pycharm_logs/logging"$currentDate".log
 echo "Log file will be stored here : " "$CURRENTFILE"
 sh /snap/pycharm-community/169/bin/pycharm.sh > "$CURRENTFILE" 2>& 1 & 
 echo "Pycharm launching done..."
@@ -68,6 +66,21 @@ rmsafe () {
 	   echo "Deletion cancelled"
 	fi
 }
+
+
+gitrm(){
+echo "Starting to recursively apply write permissions to git files"
+if [-z "${1}" ]
+	then echo "Missing directory name as input"
+else 
+	chmod -R +w "${1}"/.git 
+	echo "Deleting local git repository"
+	rmsafe "${1}"
+	echo "gitrm task done"
+fi
+}
+
+
 
 
 
